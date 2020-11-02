@@ -5,6 +5,9 @@
  */
 package com.br.locadora.view;
 
+import com.br.locadora.controller.ClienteController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author procopio
@@ -49,7 +52,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         setResizable(false);
 
         jLabelTituloCliente.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabelTituloCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon.png"))); // NOI18N
+        jLabelTituloCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/icon.png"))); // NOI18N
         jLabelTituloCliente.setText("Cadastro de Cliente");
 
         jPanelCadastroCliente.setBackground(new java.awt.Color(153, 153, 153));
@@ -107,6 +110,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         jButtonSalvar1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonSalvar1.setText("Salvar");
+        jButtonSalvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvar1ActionPerformed(evt);
+            }
+        });
 
         jButtonLimpar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonLimpar.setText("Limpar");
@@ -205,12 +213,38 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addComponent(jLabelTituloCliente)
                 .addGap(18, 18, 18)
                 .addComponent(jPanelCadastroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvar1ActionPerformed
+       
+        boolean sucess;
+        
+        try {
+            ClienteController clienteController = new ClienteController();
+            sucess =  clienteController.cadastratCliente(jTextFieldNome.getText(), jFormattedTextFieldCpf.getText()
+                    ,jTextFieldEmail.getText(),jTextFieldEndereco.getText(),jFormattedTextFieldDataNascimento.getText());
+            
+            if(sucess){
+                JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+            
+            }else{
+                
+                JOptionPane.showMessageDialog(null, "Campos Não preenchidos Corretamente");
+
+                    
+                }
+            
+            
+        } catch (Exception e) {
+        }
+        
+        
+    }//GEN-LAST:event_jButtonSalvar1ActionPerformed
 
     /**
      * @param args the command line arguments

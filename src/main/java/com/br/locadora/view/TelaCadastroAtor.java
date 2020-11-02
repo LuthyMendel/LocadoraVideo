@@ -5,6 +5,9 @@
  */
 package com.br.locadora.view;
 
+import com.br.locadora.controller.AtorController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author procopio
@@ -43,7 +46,7 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
         setResizable(false);
 
         jLabelCadastroAtor.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabelCadastroAtor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon.png"))); // NOI18N
+        jLabelCadastroAtor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/icon.png"))); // NOI18N
         jLabelCadastroAtor.setText("Cadastro Ator");
 
         jPanelPrincipal.setBackground(new java.awt.Color(153, 153, 153));
@@ -65,6 +68,11 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
 
         jButtonSalvar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonConsultar.setText("Consultar");
@@ -148,6 +156,27 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        String nome = jTextFieldNome.getText();
+        String nacionalidade = jComboBoxNacionalidade.getSelectedItem().toString();
+        boolean sucesso;
+        
+        try {
+            AtorController atorController = new AtorController();
+            sucesso = atorController.cadastrarAtor(nome, nacionalidade);
+            
+            if(sucesso == true){
+            
+                JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso");
+            }else{
+                            JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro");
+
+            }
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments
