@@ -100,6 +100,11 @@ public class Telaprincipal extends javax.swing.JFrame {
         jMenuItemCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jMenuItemCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/seta.png"))); // NOI18N
         jMenuItemCliente.setText("Cliente");
+        jMenuItemCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemClienteActionPerformed(evt);
+            }
+        });
         jMenuCadastro.add(jMenuItemCliente);
 
         jMenuItemFilme.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -153,6 +158,10 @@ public class Telaprincipal extends javax.swing.JFrame {
     private void jMenuItemAtorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAtorActionPerformed
         new TelaCadastroAtor().setVisible(true);
     }//GEN-LAST:event_jMenuItemAtorActionPerformed
+
+    private void jMenuItemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClienteActionPerformed
+       new TelaCadastroCliente().setVisible(true);
+    }//GEN-LAST:event_jMenuItemClienteActionPerformed
 
     /**
      * @param args the command line arguments

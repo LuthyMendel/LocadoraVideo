@@ -53,11 +53,5 @@ public class Ator {
     public void cadastrarAtor(Ator ator) throws ExceptionDao {
         new AtorDao().cadastrarAtor(ator);
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

@@ -15,7 +15,7 @@ public class ClienteController {
            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
            Date data= formato.parse(dataNascimento);
            
-           Cliente cliente = new Cliente(nome, cpf, email, endereco, dataNascimento);
+           Cliente cliente = new Cliente(nome, cpf, email, endereco, data);
            
            cliente.cadastrarCliente(cliente);
            return true;

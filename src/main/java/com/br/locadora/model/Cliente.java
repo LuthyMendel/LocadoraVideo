@@ -1,6 +1,8 @@
 
 package com.br.locadora.model;
 
+import com.br.locadora.dao.ClienteDao;
+import com.br.locadora.exception.ExceptionDao;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,12 +14,12 @@ public class Cliente {
     private String cpf;
     private String email;
     private String endereco;
-    private String dataNascimento;
+    private Date dataNascimento;
     private ArrayList<Item> itens = new ArrayList<Item>();
     
     public Cliente(){}
 
-    public Cliente(String nome, String cpf, String email, String endereco, String dataNascimento) {
+    public Cliente(String nome, String cpf, String email, String endereco, Date dataNascimento) {
         
         this.nome = nome;
         this.cpf = cpf;
@@ -46,7 +48,7 @@ public class Cliente {
         return endereco;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
@@ -74,7 +76,7 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -82,7 +84,9 @@ public class Cliente {
         this.itens = itens;
     }
 
-    public void cadastrarCliente(Cliente cliente) {
+    public void cadastrarCliente(Cliente cliente) throws ExceptionDao{
+        
+        new ClienteDao().cadastrarCliente(cliente);
        
     }
    

@@ -170,7 +170,7 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
             
                 JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso");
             }else{
-                            JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro");
+                JOptionPane.showMessageDialog(null, "Não foi possível realizar cadastro");
 
             }
             
