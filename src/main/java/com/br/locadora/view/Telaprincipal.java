@@ -42,21 +42,22 @@ public class Telaprincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vídeo Locadora ");
+        setPreferredSize(new java.awt.Dimension(811, 480));
         setResizable(false);
 
         jPanelTelaPrincipal.setBackground(new java.awt.Color(153, 153, 153));
         jPanelTelaPrincipal.setPreferredSize(new java.awt.Dimension(780, 400));
 
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelTelaPrincipalLayout = new javax.swing.GroupLayout(jPanelTelaPrincipal);
         jPanelTelaPrincipal.setLayout(jPanelTelaPrincipalLayout);
         jPanelTelaPrincipalLayout.setHorizontalGroup(
             jPanelTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTelaPrincipalLayout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(jLabelLogo)
-                .addGap(104, 104, 104))
+                .addGap(50, 50, 50))
         );
         jPanelTelaPrincipalLayout.setVerticalGroup(
             jPanelTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,42 +67,53 @@ public class Telaprincipal extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
-        jMenuLocacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon.png"))); // NOI18N
+        jMenuLocacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/icon.png"))); // NOI18N
         jMenuLocacao.setText("Locação");
         jMenuLocacao.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
 
         jMenuItemAlugar.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jMenuItemAlugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/seta.png"))); // NOI18N
+        jMenuItemAlugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/seta.png"))); // NOI18N
         jMenuItemAlugar.setText("Alugar");
         jMenuLocacao.add(jMenuItemAlugar);
 
         jMenuItemConsultar.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jMenuItemConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/seta.png"))); // NOI18N
+        jMenuItemConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/seta.png"))); // NOI18N
         jMenuItemConsultar.setText("Consultar");
         jMenuLocacao.add(jMenuItemConsultar);
 
         jMenuBarTelaPrincipal.add(jMenuLocacao);
 
+        jMenuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/icon.png"))); // NOI18N
         jMenuCadastro.setText("Cadastro");
         jMenuCadastro.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
 
         jMenuItemAtor.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jMenuItemAtor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/seta.png"))); // NOI18N
+        jMenuItemAtor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/seta.png"))); // NOI18N
         jMenuItemAtor.setText("Ator");
+        jMenuItemAtor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAtorActionPerformed(evt);
+            }
+        });
         jMenuCadastro.add(jMenuItemAtor);
 
         jMenuItemCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jMenuItemCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/seta.png"))); // NOI18N
+        jMenuItemCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/seta.png"))); // NOI18N
         jMenuItemCliente.setText("Cliente");
         jMenuCadastro.add(jMenuItemCliente);
 
         jMenuItemFilme.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jMenuItemFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/seta.png"))); // NOI18N
+        jMenuItemFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/seta.png"))); // NOI18N
         jMenuItemFilme.setText("Filme");
+        jMenuItemFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFilmeActionPerformed(evt);
+            }
+        });
         jMenuCadastro.add(jMenuItemFilme);
 
         jMenuItemItem.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jMenuItemItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/seta.png"))); // NOI18N
+        jMenuItemItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagensResouces/seta.png"))); // NOI18N
         jMenuItemItem.setText("Item");
         jMenuCadastro.add(jMenuItemItem);
 
@@ -117,22 +129,30 @@ public class Telaprincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jPanelTelaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelTelaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addComponent(jPanelTelaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFilmeActionPerformed
+       new TelaCadastroFilme().setVisible(true);
+    }//GEN-LAST:event_jMenuItemFilmeActionPerformed
+
+    private void jMenuItemAtorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAtorActionPerformed
+        new TelaCadastroAtor().setVisible(true);
+    }//GEN-LAST:event_jMenuItemAtorActionPerformed
 
     /**
      * @param args the command line arguments

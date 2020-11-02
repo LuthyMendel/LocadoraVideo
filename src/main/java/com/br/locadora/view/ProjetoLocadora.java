@@ -13,9 +13,7 @@ public class ProjetoLocadora {
     
     public static void main (String args[]){
     
-    TelaCadastroFilme filme  = new TelaCadastroFilme();
-    
-    filme.setVisible(true);
+    new Telaprincipal().setVisible(true);
     
     }
     

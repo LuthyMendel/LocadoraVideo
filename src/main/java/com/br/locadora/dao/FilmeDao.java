@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class FilmeDao {
 
 
-public void cadastrarFilme(Filme filme) throws ExceptionDao, InstantiationException, IllegalAccessException{
+public void cadastrarFilme(Filme filme) throws ExceptionDao, InstantiationException{
 
     String sql = "insert  into filme(titulo, genero,sinopse,duracao) value (?,?,?,?)";
     PreparedStatement pStatement = null;

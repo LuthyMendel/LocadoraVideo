@@ -25,10 +25,6 @@ public class Filme {
         this.duracao = duracao;
     }
 
- 
-    
-    
-
     public Integer getCodFilme() {
         return codFilme;
     }
@@ -85,7 +81,7 @@ public class Filme {
         this.atores = atores;
     }
 
-    public void cadastrarFilme(Filme filme) throws ExceptionDao, InstantiationException, IllegalAccessException {
+    public void cadastrarFilme(Filme filme) throws ExceptionDao, InstantiationException{
         
         new FilmeDao().cadastrarFilme(filme);
     }

@@ -11,11 +11,11 @@ import java.sql.Connection;
 
 public class ConnectionMVC {
     
-    public Connection getConection() throws InstantiationException, IllegalAccessException{
+    public Connection getConection(){
     
         Connection conn = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
                   
             e.printStackTrace();

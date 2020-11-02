@@ -1,6 +1,8 @@
 
 package com.br.locadora.model;
 
+import com.br.locadora.dao.AtorDao;
+import com.br.locadora.exception.ExceptionDao;
 import java.util.ArrayList;
 
 
@@ -48,8 +50,8 @@ public class Ator {
         this.filmes = filmes;
     }
 
-    public void cadastrarAtor(Ator ator) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cadastrarAtor(Ator ator) throws ExceptionDao {
+        new AtorDao().cadastrarAtor(ator);
     }
     
     
