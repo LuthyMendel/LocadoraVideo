@@ -93,6 +93,11 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
 
         jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonConsultar.setText("Consultar");
+        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrir_telaConsultaFilme(evt);
+            }
+        });
 
         jButtonLimpar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonLimpar.setText("Limpar");
@@ -247,6 +252,12 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         jTextAreaSinopse.setText("");
         jSpinnerDuracao.setModel(new SpinnerNumberModel(20, 20, 300, 10));
     }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void abrir_telaConsultaFilme(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_telaConsultaFilme
+       TelaConsultaFilme telaConsultaFilme = new TelaConsultaFilme(this);//Estamos passando a instância da tela de cadastroFilme
+       telaConsultaFilme.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_abrir_telaConsultaFilme
 
     /**
      * @param args the command line arguments

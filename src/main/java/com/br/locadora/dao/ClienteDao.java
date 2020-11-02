@@ -12,12 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- *
- * @author procopio
- */
 public class ClienteDao {
-    
     
     public void cadastrarCliente(Cliente cliente) throws ExceptionDao{
 
@@ -33,17 +28,14 @@ public class ClienteDao {
                 pStatement.setString(3, cliente.getEmail());
                 pStatement.setString(4, cliente.getEndereco());
                 pStatement.setDate(5, new Date(cliente.getDataNascimento().getTime()));
-
                 pStatement.execute();
         } catch (SQLException e) {
 
             throw new ExceptionDao("Erro ao Cadastrar filme"+e);
-
         }finally{
             try {
                 if(pStatement !=null){
                 pStatement.close();
-
                 } 
             }catch(SQLException e){
                         throw new ExceptionDao("Erro ao fechar o Statement: "+e);
@@ -51,14 +43,12 @@ public class ClienteDao {
 
                             if(connection != null){
                                 connection.close();
-
                             }                
                 } catch (SQLException e) {
                     throw new ExceptionDao("Erro ao fechar a conexão :"+e);
                 }
            } 
-    
-    
+
     }
     
 }

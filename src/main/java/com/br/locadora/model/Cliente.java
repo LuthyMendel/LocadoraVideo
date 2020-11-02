@@ -1,10 +1,10 @@
 
 package com.br.locadora.model;
 
-import com.br.locadora.dao.ClienteDao;
 import com.br.locadora.exception.ExceptionDao;
 import java.util.ArrayList;
 import java.util.Date;
+import com.br.locadora.dao.ClienteDao;
 
 
 public class Cliente {
