@@ -76,6 +76,11 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
 
         jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonConsultar.setText("Consultar");
+        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrir_telaConsultaAtor(evt);
+            }
+        });
 
         jButtonLimpar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonLimpar.setText("Limpar");
@@ -177,6 +182,14 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void abrir_telaConsultaAtor(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_telaConsultaAtor
+      TelaConsultaAtor telaConsultaAtor = new TelaConsultaAtor(this);
+      this.setVisible(false);
+      telaConsultaAtor.setVisible(true);
+      
+      
+    }//GEN-LAST:event_abrir_telaConsultaAtor
 
     /**
      * @param args the command line arguments
