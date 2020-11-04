@@ -5,10 +5,11 @@ import com.br.locadora.model.Cliente;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import com.br.locadora.exception.ExceptionDao;
 
 public class ClienteController {
     
-   public boolean cadastratCliente(String nome, String cpf, String email, String endereco, String dataNascimento) throws ParseException{
+   public boolean cadastratCliente(String nome, String cpf, String email, String endereco, String dataNascimento) throws ParseException, ExceptionDao{
        if(nome !=null && nome.length()>0 && validarCPF(cpf) && email !=null && email.length()>0 
                && endereco !=null && endereco.length()>0 && validarData(dataNascimento)){
        

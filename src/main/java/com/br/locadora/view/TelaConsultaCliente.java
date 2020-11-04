@@ -81,6 +81,11 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClienteMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableCliente);
 
         javax.swing.GroupLayout jPanelBuscarClienteLayout = new javax.swing.GroupLayout(jPanelBuscarCliente);
@@ -152,6 +157,15 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
        this.dispose();
        this.telaCadastroCliente.setVisible(true);
     }//GEN-LAST:event_fecharJanela
+
+    private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
+       if(evt.getClickCount() ==2){
+       
+   
+       }
+        
+        
+    }//GEN-LAST:event_jTableClienteMouseClicked
 
     /**
      * @param args the command line arguments

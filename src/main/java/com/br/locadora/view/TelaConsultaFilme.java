@@ -91,6 +91,11 @@ public class TelaConsultaFilme extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableColsultaFilme.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableColsultaFilmeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableColsultaFilme);
 
         javax.swing.GroupLayout jPanelConsultaFilmeLayout = new javax.swing.GroupLayout(jPanelConsultaFilme);
@@ -186,6 +191,27 @@ public class TelaConsultaFilme extends javax.swing.JFrame {
        this.dispose();
        this.telacadastroFilme.setVisible(true);
     }//GEN-LAST:event_FecharJanela
+
+    private void jTableColsultaFilmeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableColsultaFilmeMouseClicked
+        if(evt.getClickCount() == 2){
+        
+            Integer codFilme = (Integer) jTableColsultaFilme.getModel().getValueAt(jTableColsultaFilme.getSelectedRow(), 0);
+            String titulo = (String) jTableColsultaFilme.getModel().getValueAt(jTableColsultaFilme.getSelectedRow(), 1);
+            String genero = (String) jTableColsultaFilme.getModel().getValueAt(jTableColsultaFilme.getSelectedRow(), 2);
+            String sinopse = (String) jTableColsultaFilme.getModel().getValueAt(jTableColsultaFilme.getSelectedRow(), 3);
+            Integer duracao = (Integer) jTableColsultaFilme.getModel().getValueAt(jTableColsultaFilme.getSelectedRow(), 4);
+            
+            
+                this.telacadastroFilme.buscarFilme(codFilme, titulo, genero, sinopse,duracao);
+            
+            
+            
+            this.telacadastroFilme.setVisible(true);
+            this.dispose();
+            
+        
+        }
+    }//GEN-LAST:event_jTableColsultaFilmeMouseClicked
 
     /**
      * @param args the command line arguments

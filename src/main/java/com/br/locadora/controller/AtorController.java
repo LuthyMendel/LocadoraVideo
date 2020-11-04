@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.br.locadora.controller;
+import com.br.locadora.exception.ExceptionDao;
+
 
 import com.br.locadora.model.Ator;
 
@@ -13,7 +15,7 @@ import com.br.locadora.model.Ator;
  */
 public class AtorController {
     
-    public boolean cadastrarAtor(String nome, String nacionalidade){
+    public boolean cadastrarAtor(String nome, String nacionalidade) throws ExceptionDao{
     
         if(nome != null && nome.length()>1 && nacionalidade != null && nacionalidade.length()>1){
         

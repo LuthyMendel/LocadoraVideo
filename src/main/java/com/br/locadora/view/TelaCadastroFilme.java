@@ -15,11 +15,28 @@ import javax.swing.SpinnerNumberModel;
  */
 public class TelaCadastroFilme extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCadastroFilme
-     */
+    private Telaprincipal telaPrincipal;
+    private Integer codFilme = 0;
+    
     public TelaCadastroFilme() {
         initComponents();
+    }
+    
+    
+     public TelaCadastroFilme(Telaprincipal telaPrincipal) {
+        initComponents();
+        this.telaPrincipal = telaPrincipal;
+    }
+    
+    
+    public void buscarFilme(Integer codFilme,  String titulo, String genero, String sinopse,Integer duracao){
+    
+        this.jTextFieldNome.setText(titulo);
+        this.jComboBoxGenero.getModel().setSelectedItem(genero);
+        this.jTextAreaSinopse.setText(sinopse);
+        this.jSpinnerDuracao.setValue(duracao);
+    
+    
     }
 
     /**
@@ -246,7 +263,7 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvar3ActionPerformed
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
-       
+        this.codFilme = codFilme;
         jTextFieldNome.setText("");
         jComboBoxGenero.setSelectedIndex(0);
         jTextAreaSinopse.setText("");
