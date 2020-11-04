@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import com.br.locadora.model.Filme;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class FilmeDao {
@@ -52,6 +54,63 @@ public void cadastrarFilme(Filme filme) throws ExceptionDao, InstantiationExcept
     
     
     }
+
+public ArrayList<Filme> listarFilmes(String nome) throws ExceptionDao{
+
+    String sql = "select * from filme where titulo like '%"+nome+"%' order by titulo ";
+    Connection connection = null;
+    PreparedStatement pStatement =null;
+    
+    ArrayList<Filme> filmes = null;
+    
+    try {
+        connection = new ConnectionMVC().getConection();
+        pStatement =  connection.prepareStatement(sql);
+        
+        ResultSet rs = pStatement.executeQuery(sql);
+        
+        if(rs!=null){
+            filmes = new ArrayList<Filme>();
+            while (rs.next()) {
+                Filme filme = new Filme();
+                
+                filme.setCodFilme(rs.getInt("codigo"));
+                filme.setTitulo(rs.getString("titulo"));
+                filme.setGenero(rs.getString("genero"));
+                filme.setSinopse(rs.getString("sinopse"));                
+                filme.setDuracao(rs.getInt("duracao"));
+                
+                filmes.add(filme);         
+            }
+
+        }
+
+    } catch (SQLException e) {
+        throw  new ExceptionDao("Erro ao consultar Filmes: "+e);
+    }finally{
+    
+        try {
+            
+            if(pStatement!=null){
+                pStatement.close();
+            }
+
+        } catch (SQLException e) {
+            
+            throw  new ExceptionDao("Erro ao fechar o pStatement: "+e);
+        }try {
+            if(connection !=null){
+            connection.close();
+            }
+        } catch (SQLException e) {
+            
+            throw new ExceptionDao("Erro ao fechar a conexão");
+        }
+    }
+ 
+    return filmes;
+    
+}
     
 }    
     

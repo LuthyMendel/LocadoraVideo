@@ -16,9 +16,10 @@ public class Filme {
     private ArrayList<Item> itens = new ArrayList<Item>();
     private ArrayList<Ator> atores = new ArrayList<Ator>();
 
+    
+    public Filme(){}
     public Filme( String titulo, String genero, String sinopse, Integer duracao) {
-        
-      
+
         this.titulo = titulo;
         this.genero = genero;
         this.sinopse = sinopse;
@@ -86,4 +87,9 @@ public class Filme {
         new FilmeDao().cadastrarFilme(filme);
     }
  
+    public ArrayList<Filme> listarFilmes(String nome) throws ExceptionDao{
+    
+    return new FilmeDao().listarFilmes(nome);
+    
+    }
 }

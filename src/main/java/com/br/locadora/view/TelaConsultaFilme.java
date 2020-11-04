@@ -1,7 +1,14 @@
 
 package com.br.locadora.view;
 
+import com.br.locadora.controller.FilmeController;
+import com.br.locadora.exception.ExceptionDao;
+import com.br.locadora.model.Filme;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaConsultaFilme extends javax.swing.JFrame {
 
@@ -100,8 +107,8 @@ public class TelaConsultaFilme extends javax.swing.JFrame {
                 .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultaFilmeLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         jPanelConsultaFilmeLayout.setVerticalGroup(
             jPanelConsultaFilmeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,9 +118,9 @@ public class TelaConsultaFilme extends javax.swing.JFrame {
                     .addComponent(jLabelTituloFilme)
                     .addComponent(jTextFieldTituloNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonConsultarFilme))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jLabelTitulo.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
@@ -148,7 +155,31 @@ public class TelaConsultaFilme extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultarFilme(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFilme
-       JOptionPane.showMessageDialog(null, "Consultando Filme teste");
+       
+        String nome = jTextFieldTituloNome.getText();
+        DefaultTableModel tabelaModelo = (DefaultTableModel) jTableColsultaFilme.getModel();
+        tabelaModelo.setRowCount(0);
+        FilmeController filmeController = new FilmeController();
+        
+        try {
+            ArrayList<Filme> filmes = filmeController.listarFilmes(nome);
+            filmes.forEach((Filme filme) ->{
+            tabelaModelo.addRow(new Object[]{
+                                filme.getCodFilme(),
+                                filme.getTitulo(),
+                                filme.getGenero(),
+                                filme.getSinopse(),
+                                filme.getDuracao()
+            });
+        
+        });
+            jTableColsultaFilme.setModel(tabelaModelo);
+        } catch (ExceptionDao e) {
+            
+            Logger.getLogger(TelaCadastroFilme.class.getName()).log(Level.SEVERE,null,e);
+        }
+        
+        
     }//GEN-LAST:event_consultarFilme
 
     private void FecharJanela(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FecharJanela

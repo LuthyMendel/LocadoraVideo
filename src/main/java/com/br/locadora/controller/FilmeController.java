@@ -7,6 +7,7 @@ package com.br.locadora.controller;
 
 import com.br.locadora.exception.ExceptionDao;
 import com.br.locadora.model.Filme;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,8 +25,14 @@ public class FilmeController {
         return true;    
     }
     
-    return false;
+        return false;
     
     }
+    
+public ArrayList<Filme> listarFilmes(String nome)throws ExceptionDao{
+
+    return new Filme().listarFilmes(nome);
+
+}
     
 }
