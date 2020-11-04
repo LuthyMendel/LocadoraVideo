@@ -12,6 +12,8 @@ public class Ator {
     private String nome;
     private String nacionalidade;
     private ArrayList<Filme> filmes = new ArrayList<Filme>();
+    
+    public Ator(){}
 
     public Ator( String nome, String nacionalidade) {        
         this.nome = nome;
@@ -52,6 +54,14 @@ public class Ator {
 
     public void cadastrarAtor(Ator ator) throws ExceptionDao {
         new AtorDao().cadastrarAtor(ator);
+    }
+    
+    
+    public ArrayList<Ator> listarAtores(String nome)throws ExceptionDao{
+    
+    return new AtorDao().listarAtores(nome);
+        
+    
     }
 
 }

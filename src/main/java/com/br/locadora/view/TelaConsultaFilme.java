@@ -183,8 +183,7 @@ public class TelaConsultaFilme extends javax.swing.JFrame {
             
             Logger.getLogger(TelaCadastroFilme.class.getName()).log(Level.SEVERE,null,e);
         }
-        
-        
+ 
     }//GEN-LAST:event_consultarFilme
 
     private void FecharJanela(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FecharJanela
@@ -201,11 +200,8 @@ public class TelaConsultaFilme extends javax.swing.JFrame {
             String sinopse = (String) jTableColsultaFilme.getModel().getValueAt(jTableColsultaFilme.getSelectedRow(), 3);
             Integer duracao = (Integer) jTableColsultaFilme.getModel().getValueAt(jTableColsultaFilme.getSelectedRow(), 4);
             
-            
-                this.telacadastroFilme.buscarFilme(codFilme, titulo, genero, sinopse,duracao);
-            
-            
-            
+            this.telacadastroFilme.buscarFilme(codFilme, titulo, genero, sinopse,duracao);
+
             this.telacadastroFilme.setVisible(true);
             this.dispose();
             
