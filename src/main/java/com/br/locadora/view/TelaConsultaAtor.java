@@ -7,7 +7,6 @@ import com.br.locadora.model.Ator;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -85,6 +84,11 @@ public class TelaConsultaAtor extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableTabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTabelaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTableTabela);
@@ -171,15 +175,13 @@ public class TelaConsultaAtor extends javax.swing.JFrame {
                 
                 });
             
-            
             });
             jTableTabela.setModel(tabelaModelo);
         } catch (Exception e) {
             
             Logger.getLogger(TelaCadastroAtor.class.getName()).log(Level.SEVERE, null,e);
         }
-        
-        
+  
     }//GEN-LAST:event_consultarAtor
 
     private void fecharJanela(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_fecharJanela
@@ -187,6 +189,21 @@ public class TelaConsultaAtor extends javax.swing.JFrame {
         telaCadastroAtor.setVisible(true);
         
     }//GEN-LAST:event_fecharJanela
+
+    private void jTableTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTabelaMouseClicked
+        if(evt.getClickCount() == 2){
+    
+        Integer codAtor = (Integer) jTableTabela.getModel().getValueAt(jTableTabela.getSelectedRow(),0);
+         String nome = (String) jTableTabela.getModel().getValueAt(jTableTabela.getSelectedRow(),1);
+         String nacionalidade = (String) jTableTabela.getModel().getValueAt(jTableTabela.getSelectedRow(),2);
+         
+            System.out.println("Nome "+nome);
+         this.telaCadastroAtor.buscarAtor(codAtor, nome, nacionalidade);
+         this.telaCadastroAtor.setVisible(true);
+         this.dispose();
+    
+    }
+    }//GEN-LAST:event_jTableTabelaMouseClicked
 
     /**
      * @param args the command line arguments

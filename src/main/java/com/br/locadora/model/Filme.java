@@ -92,4 +92,10 @@ public class Filme {
     return new FilmeDao().listarFilmes(nome);
     
     }
+    
+    public void alterarFilme (Filme filme) throws ExceptionDao{
+        new FilmeDao().alterarFilme(filme);
+    
+    }
+    
 }

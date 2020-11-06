@@ -241,24 +241,29 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         int duracao = Integer.parseInt(jSpinnerDuracao.getValue().toString());
         String genero = jComboBoxGenero.getSelectedItem().toString();
         boolean sucesso;
-        
+
         try {
             FilmeController filmeController = new FilmeController();
-            sucesso = filmeController.cadastrarFilme(jTextFieldNome.getText(), genero, jTextAreaSinopse.getText(), duracao);
-            
-            if(sucesso == true){
-            
-                JOptionPane.showMessageDialog(null, "Cadastro de Filme Realizadocom Sucesso");
-                
+            if (this.codFilme == 0) {
+
+                sucesso = filmeController.cadastrarFilme(jTextFieldNome.getText(), genero, jTextAreaSinopse.getText(), duracao);
+
             }else{
-                
-               JOptionPane.showMessageDialog(null, "Campos não preenchidos corretamente");
+              sucesso = filmeController.alterarFilme(this.codFilme,jTextFieldNome.getText(), genero, jTextAreaSinopse.getText(), duracao);
+            }
+
+            if (sucesso == true) {
+
+                JOptionPane.showMessageDialog(null, "Cadastro de Filme Realizadocom Sucesso");
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Campos não preenchidos corretamente");
 
             }
-            
-            
+
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Erro:"+ e);
+            JOptionPane.showMessageDialog(null, "Erro:" + e);
         }
     }//GEN-LAST:event_jButtonSalvar3ActionPerformed
 

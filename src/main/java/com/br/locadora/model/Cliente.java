@@ -89,6 +89,13 @@ public class Cliente {
         new ClienteDao().cadastrarCliente(cliente);
        
     }
+    
+    
+    public ArrayList<Cliente> buscarCliente(String nome) throws ExceptionDao{
+        
+        return  new ClienteDao().listarClientes(nome);
+        
+    }
    
     
 }

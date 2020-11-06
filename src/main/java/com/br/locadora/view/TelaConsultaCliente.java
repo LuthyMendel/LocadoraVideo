@@ -1,7 +1,13 @@
 
 package com.br.locadora.view;
 
-import javax.swing.JOptionPane;
+import com.br.locadora.controller.ClienteController;
+import com.br.locadora.model.Cliente;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaConsultaCliente extends javax.swing.JFrame {
     
@@ -13,8 +19,7 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
     }
     
      public TelaConsultaCliente(TelaCadastroCliente telaCadastroCliente) {
-         this.telaCadastroCliente = telaCadastroCliente;
-         //telaCadastroCliente.setVisible(false);
+         this.telaCadastroCliente = telaCadastroCliente;        
         initComponents();
     }
 
@@ -63,14 +68,14 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "CPF", "Data Nascimento", "E-mail", "Endereço"
+                "Codigo", "Nome", "CPF", "Data Nascimento", "E-mail", "Endereço"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -95,14 +100,15 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
             .addGroup(jPanelBuscarClienteLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanelBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanelBuscarClienteLayout.createSequentialGroup()
                         .addComponent(jLabelNome)
                         .addGap(18, 18, 18)
                         .addComponent(jTextFieldNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(jButtonConsultar)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addComponent(jButtonConsultar)
+                        .addGap(0, 169, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelBuscarClienteLayout.setVerticalGroup(
             jPanelBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +156,36 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscar_Cliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_Cliente
-        JOptionPane.showMessageDialog(null, "Busca de Cliente");
+        
+        String nomeCliente = jTextFieldNomeCliente.getText();
+
+        DefaultTableModel tabelaModelo = (DefaultTableModel) jTableCliente.getModel();
+        tabelaModelo.setRowCount(0);
+        
+        ClienteController clienteController = new ClienteController();
+        
+        try {
+            ArrayList<Cliente> clientes = clienteController.buscarClientes(nomeCliente);
+            
+            clientes.forEach((Cliente cliente)->{
+                tabelaModelo.addRow(new Object[]{
+                    cliente.getCodCliente(),
+                    cliente.getNome(),
+                    cliente.getCpf(),
+                    cliente.getEmail(),
+                    cliente.getEndereco(),
+                    cliente.getDataNascimento()
+                
+                });
+            
+            });
+            jTableCliente.setModel(tabelaModelo);
+        } catch (Exception e) {
+            
+            Logger.getLogger(TelaCadastroAtor.class.getName()).log(Level.SEVERE, null,e);
+        }
+  
+        
     }//GEN-LAST:event_buscar_Cliente
 
     private void fecharJanela(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_fecharJanela
@@ -159,14 +194,26 @@ public class TelaConsultaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_fecharJanela
 
     private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
-       if(evt.getClickCount() ==2){
-       
-   
+      
+        if(evt.getClickCount() == 2){
+           
+           Integer codClliente = (Integer) jTableCliente.getModel().getValueAt(jTableCliente.getSelectedRow(), 0);
+           String nome = (String) jTableCliente.getModel().getValueAt(jTableCliente.getSelectedRow(), 1);
+           String cpf = (String) jTableCliente.getModel().getValueAt(jTableCliente.getSelectedRow(), 2);
+           String email = (String) jTableCliente.getModel().getValueAt(jTableCliente.getSelectedRow(), 3);
+           String endereco = (String) jTableCliente.getModel().getValueAt(jTableCliente.getSelectedRow(), 4);
+           Date dtnascimento = (Date) jTableCliente.getModel().getValueAt(jTableCliente.getSelectedRow(), 5);
+
+           this.telaCadastroCliente.buscarCliente(codClliente,nome,cpf,email,endereco, dtnascimento);
+           this.telaCadastroCliente.setVisible(true);
+           this.dispose();
+           System.out.println("Nome: "+nome );
        }
         
         
     }//GEN-LAST:event_jTableClienteMouseClicked
 
+  
     /**
      * @param args the command line arguments
      */

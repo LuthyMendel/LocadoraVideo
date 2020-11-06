@@ -7,7 +7,6 @@ import com.br.locadora.model.Filme;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaConsultaFilme extends javax.swing.JFrame {

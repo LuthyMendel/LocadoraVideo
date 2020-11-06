@@ -111,6 +111,48 @@ public ArrayList<Filme> listarFilmes(String nome) throws ExceptionDao{
     return filmes;
     
 }
+
+public void alterarFilme (Filme filme) throws ExceptionDao{
+    String sql ="Update Filme set titulo=?, genero=?, sinopse=?, duracao=? where codigo = ?";
     
-}    
+    PreparedStatement pStatement = null;
+    Connection connection = null;
+    
+    try {
+            connection = new ConnectionMVC().getConection();
+            pStatement = connection.prepareCall(sql);
+            pStatement.setString(1, filme.getTitulo());
+            pStatement.setString(2, filme.getGenero());
+            pStatement.setString(3, filme.getSinopse());
+            pStatement.setInt(4, filme.getDuracao());
+            pStatement.setInt(5, filme.getCodFilme());
+            pStatement.execute();
+
+        } catch (SQLException e) {
+            throw new ExceptionDao("Erro ao Alterar Filmes: " + e);
+        } finally {
+
+            try {
+
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+
+            } catch (SQLException e) {
+
+                throw new ExceptionDao("Erro ao fechar o pStatement: " + e);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+
+                throw new ExceptionDao("Erro ao fechar a conexão");
+            }
+
+        }
+
+    }
+}
     

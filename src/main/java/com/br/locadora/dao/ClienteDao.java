@@ -10,7 +10,9 @@ import com.br.locadora.model.Cliente;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ClienteDao {
     
@@ -48,6 +50,64 @@ public class ClienteDao {
                     throw new ExceptionDao("Erro ao fechar a conexão :"+e);
                 }
            } 
+
+    }
+    
+    public ArrayList<Cliente> listarClientes(String nome) throws ExceptionDao{
+
+        String sql = "select * from cliente where nome like '%" + nome + "%' order by nome ";
+        Connection connection = null;
+        PreparedStatement pStatement = null;
+
+        ArrayList<Cliente> clientes = null;
+
+        try {
+            connection = new ConnectionMVC().getConection();
+            pStatement = connection.prepareStatement(sql);
+            ResultSet rs = pStatement.executeQuery(sql);
+
+            if (rs != null) {
+                clientes = new ArrayList<Cliente>();
+                while (rs.next()) {
+                    Cliente cliente = new Cliente();
+
+                    cliente.setCodCliente(rs.getInt("codigo"));
+                    cliente.setNome(rs.getString("nome"));
+                    cliente.setCpf(rs.getString("cpf"));
+                    cliente.setEmail(rs.getString("email"));
+                    cliente.setEndereco(rs.getString("endereco"));
+                    cliente.setDataNascimento(rs.getDate("dtNascimento"));
+   
+                    clientes.add(cliente);
+                }
+
+            }
+
+        } catch (SQLException e) {
+            throw new ExceptionDao("Erro ao consultar Cliente: " + e);
+        } finally {
+
+            try {
+
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+
+            } catch (SQLException e) {
+
+                throw new ExceptionDao("Erro ao fechar o pStatement: " + e);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+
+                throw new ExceptionDao("Erro ao fechar a conexão");
+            }
+        }
+
+        return clientes;
 
     }
     

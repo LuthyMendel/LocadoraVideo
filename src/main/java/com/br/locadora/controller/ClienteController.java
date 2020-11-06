@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.br.locadora.exception.ExceptionDao;
+import java.util.ArrayList;
 
 public class ClienteController {
     
@@ -56,5 +57,13 @@ public class ClienteController {
         }
      return true;
     }
+   
+   
+     public ArrayList<Cliente> buscarClientes(String Nome)throws ExceptionDao{
+    
+        return new Cliente().buscarCliente(Nome);
+    
+    }
+    
    
 }
