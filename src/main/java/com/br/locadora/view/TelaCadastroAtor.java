@@ -172,7 +172,12 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
         
         try {
             AtorController atorController = new AtorController();
-            sucesso = atorController.cadastrarAtor(nome, nacionalidade);
+            
+            if(this.codAtor == 0){
+                 sucesso = atorController.cadastrarAtor(nome, nacionalidade);
+            }else{
+             sucesso = atorController.alterarAtor(codAtor, nome, nacionalidade);
+            }
             
             if(sucesso == true){
             

@@ -97,5 +97,10 @@ public class Cliente {
         
     }
    
+    public void alterarCliente (Cliente cliente) throws ExceptionDao{
+    
+    new ClienteDao().AlterarCliente(cliente);
+    
+    }
     
 }

@@ -25,4 +25,17 @@ public class AtorController {
         
     }
     
+    
+    public boolean alterarAtor(Integer codAtor, String nome, String nacionalidade) throws ExceptionDao {
+        
+        if (nome != null && nome.length() > 1 && nacionalidade != null && nacionalidade.length() > 1) {
+            
+            Ator ator = new Ator(nome, nacionalidade);
+            ator.setCodAtor(codAtor);
+            ator.alterarAtor(ator);
+            return true;
+        }
+        return false;
+    }
+    
 }

@@ -219,20 +219,28 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
     private void jButtonSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvar1ActionPerformed
        
-        boolean sucess;
+        boolean sucesso;
         
         try {
             ClienteController clienteController = new ClienteController();
-            sucess =  clienteController.cadastratCliente(jTextFieldNome.getText(), jFormattedTextFieldCpf.getText()
+            
+            
+            if(this.codCliente == 0){
+                  sucesso =  clienteController.cadastratCliente(jTextFieldNome.getText(), jFormattedTextFieldCpf.getText()
                     ,jTextFieldEmail.getText(),jTextFieldEndereco.getText(),jFormattedTextFieldDataNascimento.getText());
             
-            if(sucess){
+            }else{
+                
+                 sucesso =  clienteController.alterarCliente(this.codCliente, jTextFieldNome.getText(), jFormattedTextFieldCpf.getText()
+                    ,jTextFieldEmail.getText(),jTextFieldEndereco.getText(),jFormattedTextFieldDataNascimento.getText());
+            }
+            
+            if(sucesso){
                 JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
             
             }else{
                 
                 JOptionPane.showMessageDialog(null, "Campos Não preenchidos Corretamente");
-
                     
                 }
             
@@ -257,11 +265,12 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
         
         
-       this.jTextFieldNome.setText(nome);
+        this.jTextFieldNome.setText(nome);
         this.jTextFieldEmail.setText(email);
         this.jFormattedTextFieldCpf.setText(cpf);
         this.jTextFieldEndereco.setText(endereco);
         this.jFormattedTextFieldDataNascimento.setText(dataFormatada.format(dtnascimento));
+        this.codCliente = codClliente;
         
         
         

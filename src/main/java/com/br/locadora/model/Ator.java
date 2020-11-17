@@ -57,11 +57,15 @@ public class Ator {
     }
     
     
-    public ArrayList<Ator> listarAtores(String nome)throws ExceptionDao{
-    
-    return new AtorDao().listarAtores(nome);
-        
-    
+    public ArrayList<Ator> listarAtores(String nome) throws ExceptionDao {
+
+        return new AtorDao().listarAtores(nome);
+
     }
 
+     public void alterarAtor(Ator ator) throws ExceptionDao{
+     
+     new AtorDao().alterarAtor(ator);
+         
+     }
 }

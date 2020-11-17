@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class ClienteDao {
     
@@ -108,6 +109,46 @@ public class ClienteDao {
         }
 
         return clientes;
+
+    }
+    
+    //Alterar
+    public void AlterarCliente(Cliente cliente) throws ExceptionDao{
+              
+         String sql = "Update  cliente set nome= ?, cpf=?, email =?, endereco=?, dtNascimento=? where codigo = ?";
+         PreparedStatement pStatement = null;
+         Connection connection = null;
+    
+        try {
+            connection = new ConnectionMVC().getConection();
+                pStatement = connection.prepareStatement(sql); 
+                pStatement.setString(1, cliente.getNome());
+                pStatement.setString(2, cliente.getCpf());
+                pStatement.setString(3, cliente.getEmail());
+                pStatement.setString(4, cliente.getEndereco());
+                pStatement.setDate(5, new Date(cliente.getDataNascimento().getTime()));
+                pStatement.setInt(6, cliente.getCodCliente());
+
+                pStatement.execute();
+        } catch (SQLException e) {
+
+            throw new ExceptionDao("Erro ao Alterar Cliente"+e);
+        }finally{
+            try {
+                if(pStatement !=null){
+                pStatement.close();
+                } 
+            }catch(SQLException e){
+                        throw new ExceptionDao("Erro ao Alterar o Statement: "+e);
+                        }try {
+
+                            if(connection != null){
+                                connection.close();
+                            }                
+                } catch (SQLException e) {
+                    throw new ExceptionDao("Erro ao fechar a conexão :"+e);
+                }
+           } 
 
     }
     

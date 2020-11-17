@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.br.locadora.exception.ExceptionDao;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class ClienteController {
     
@@ -64,6 +65,28 @@ public class ClienteController {
         return new Cliente().buscarCliente(Nome);
     
     }
+     
+     
+    
+    
+   public boolean alterarCliente(int codigo, String nome, String cpf, String email, String endereco, String dataNascimento) throws ParseException, ExceptionDao{
+       
+         
+       if(nome !=null && nome.length()>0 && validarCPF(cpf) && email !=null && email.length()>0 
+               && endereco !=null && endereco.length()>0 && validarData(dataNascimento)){
+       
+           SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+           Date data= formato.parse(dataNascimento);
+           
+           Cliente cliente = new Cliente(nome, cpf, email, endereco, data);
+           cliente.setCodCliente(codigo);
+           cliente.alterarCliente(cliente);
+           return true;
+       
+       }
+       
+   return false;
+   }
     
    
 }
