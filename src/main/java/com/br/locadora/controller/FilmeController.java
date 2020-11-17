@@ -8,6 +8,7 @@ package com.br.locadora.controller;
 import com.br.locadora.exception.ExceptionDao;
 import com.br.locadora.model.Filme;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,5 +51,23 @@ public class FilmeController {
         return false;
 
     }
+   
+   public boolean apagarFilme(int codigo) throws Exception{
+
+       if(codigo == 0){
+           
+             return false;
+      
+       
+       }else{
+       
+           Filme filme = new Filme();
+           
+            filme.setCodFilme(codigo);
+            filme.excluirFilme(filme);
+            return true;
+       }
+   
+   }
 
 }

@@ -98,4 +98,8 @@ public class Filme {
     
     }
     
+     public void excluirFilme (Filme filme) throws ExceptionDao{
+        new FilmeDao().excluirFilme(filme);
+    }
+    
 }

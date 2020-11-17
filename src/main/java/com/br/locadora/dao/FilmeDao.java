@@ -154,5 +154,46 @@ public void alterarFilme (Filme filme) throws ExceptionDao{
         }
 
     }
+
+public void excluirFilme(Filme filme) throws ExceptionDao{
+    
+    System.out.print("Codigo -->"+filme.getCodFilme());
+
+    String sql = "delete from filme where codigo = ?";
+    PreparedStatement pStatement = null;
+    Connection connection = null;
+    
+    try {
+        connection = new ConnectionMVC().getConection();
+            pStatement = connection.prepareStatement(sql); 
+            pStatement.setInt(1, filme.getCodFilme());
+        
+            pStatement.execute();
+    } catch (SQLException e) {
+        
+        throw new ExceptionDao("Erro ao Excluir filme"+e);
+        
+    }finally{
+        try {
+            if(pStatement !=null){
+            pStatement.close();
+            
+            } 
+        }catch(SQLException e){
+                    throw new ExceptionDao("Erro ao fechar o Statement: "+e);
+                    }try {
+                        
+                        if(connection != null){
+                            connection.close();
+                        
+                        }                
+            } catch (SQLException e) {
+                throw new ExceptionDao("Erro ao fechar a conexão :"+e);
+            }
+       } 
+    
+    
+    }
+
 }
     

@@ -6,6 +6,7 @@
 package com.br.locadora.view;
 
 import com.br.locadora.controller.AtorController;
+import com.br.locadora.controller.FilmeController;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,6 +44,7 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
         jButtonConsultar = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButtonApagar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vídeo Locadora ");
@@ -91,6 +93,14 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
         jButtonCancelar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonCancelar.setText("Cancelar");
 
+        jButtonApagar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButtonApagar.setText("Apagar");
+        jButtonApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonApagarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
@@ -114,7 +124,9 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jButtonCancelar)
                         .addGap(32, 32, 32)
-                        .addComponent(jButtonConsultar)))
+                        .addComponent(jButtonConsultar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonApagar)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanelPrincipalLayout.setVerticalGroup(
@@ -133,7 +145,8 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
                     .addComponent(jButtonSalvar)
                     .addComponent(jButtonLimpar)
                     .addComponent(jButtonCancelar)
-                    .addComponent(jButtonConsultar))
+                    .addComponent(jButtonConsultar)
+                    .addComponent(jButtonApagar))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
@@ -199,6 +212,12 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
       
     }//GEN-LAST:event_abrir_telaConsultaAtor
 
+    private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
+        boolean sucesso;
+        
+        
+    }//GEN-LAST:event_jButtonApagarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -235,6 +254,7 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonApagar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConsultar;
     private javax.swing.JButton jButtonLimpar;

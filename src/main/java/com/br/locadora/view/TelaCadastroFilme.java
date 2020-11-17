@@ -6,6 +6,8 @@
 package com.br.locadora.view;
 
 import com.br.locadora.controller.FilmeController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
@@ -35,6 +37,7 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         this.jComboBoxGenero.getModel().setSelectedItem(genero);
         this.jTextAreaSinopse.setText(sinopse);
         this.jSpinnerDuracao.setValue(duracao);
+        this.codFilme = codFilme;
     
     
     }
@@ -63,6 +66,7 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         jButtonCancelar = new javax.swing.JButton();
         jButtonSalvar3 = new javax.swing.JButton();
         jLabelMinutos = new javax.swing.JLabel();
+        jButtonExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -139,6 +143,14 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
         jLabelMinutos.setForeground(new java.awt.Color(255, 255, 255));
         jLabelMinutos.setText("minutos");
 
+        jButtonExcluir.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCadastroFilmeLayout = new javax.swing.GroupLayout(jPanelCadastroFilme);
         jPanelCadastroFilme.setLayout(jPanelCadastroFilmeLayout);
         jPanelCadastroFilmeLayout.setHorizontalGroup(
@@ -168,7 +180,9 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jButtonCancelar)
                         .addGap(34, 34, 34)
-                        .addComponent(jButtonConsultar)))
+                        .addComponent(jButtonConsultar)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonExcluir)))
                 .addContainerGap(124, Short.MAX_VALUE))
             .addGroup(jPanelCadastroFilmeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelCadastroFilmeLayout.createSequentialGroup()
@@ -199,7 +213,8 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
                     .addComponent(jButtonSalvar3)
                     .addComponent(jButtonLimpar)
                     .addComponent(jButtonCancelar)
-                    .addComponent(jButtonConsultar))
+                    .addComponent(jButtonConsultar)
+                    .addComponent(jButtonExcluir))
                 .addGap(0, 51, Short.MAX_VALUE))
             .addGroup(jPanelCadastroFilmeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelCadastroFilmeLayout.createSequentialGroup()
@@ -281,6 +296,29 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
        this.setVisible(false);
     }//GEN-LAST:event_abrir_telaConsultaFilme
 
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+
+        try {
+            boolean sucesso;
+            
+            FilmeController filmeController = new FilmeController();
+            sucesso = filmeController.apagarFilme(this.codFilme);
+          
+          
+            
+            if(sucesso){
+                JOptionPane.showMessageDialog(null, "Filme Excluído com Sucesso");
+
+            }else{
+                  JOptionPane.showMessageDialog(null, "Selecione um Filme");
+
+            
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaCadastroFilme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,6 +357,7 @@ public class TelaCadastroFilme extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConsultar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonSalvar3;
     private javax.swing.JComboBox<String> jComboBoxGenero;
