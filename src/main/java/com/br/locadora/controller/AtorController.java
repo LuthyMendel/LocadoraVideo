@@ -38,4 +38,19 @@ public class AtorController {
         return false;
     }
     
+     public boolean excluirAtor(int codigo) throws ExceptionDao {
+        
+        if (codigo == 0) {
+           
+            return false;
+        }else{
+        
+        Ator ator = new Ator();
+
+            ator.setCodAtor(codigo);
+            ator.excluirAtor(ator);
+            return true;
+        }
+    }
+    
 }

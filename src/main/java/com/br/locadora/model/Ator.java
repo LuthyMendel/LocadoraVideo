@@ -68,4 +68,10 @@ public class Ator {
      new AtorDao().alterarAtor(ator);
          
      }
+     
+      public void excluirAtor(Ator ator) throws ExceptionDao{
+     
+     new AtorDao().excluirAtor(ator);
+         
+     }
 }

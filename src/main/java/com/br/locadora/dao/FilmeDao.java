@@ -157,7 +157,6 @@ public void alterarFilme (Filme filme) throws ExceptionDao{
 
 public void excluirFilme(Filme filme) throws ExceptionDao{
     
-    System.out.print("Codigo -->"+filme.getCodFilme());
 
     String sql = "delete from filme where codigo = ?";
     PreparedStatement pStatement = null;

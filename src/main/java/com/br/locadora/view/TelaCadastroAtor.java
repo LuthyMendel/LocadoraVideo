@@ -7,6 +7,9 @@ package com.br.locadora.view;
 
 import com.br.locadora.controller.AtorController;
 import com.br.locadora.controller.FilmeController;
+import com.br.locadora.exception.ExceptionDao;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -213,11 +216,31 @@ public class TelaCadastroAtor extends javax.swing.JFrame {
     }//GEN-LAST:event_abrir_telaConsultaAtor
 
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
-        boolean sucesso;
+         boolean sucesso; 
+         AtorController atorcontroller = new AtorController();            
+
+        try {
+           sucesso =  atorcontroller.excluirAtor(this.codAtor);
+           
+            
+            if(sucesso){
+                JOptionPane.showMessageDialog(null, "Ator Excluído com Sucesso");
+                limpartTelaAtor();
+            }else{
+            JOptionPane.showMessageDialog(null, "Selecione um ator para Excluir");
+            }
+        } catch (ExceptionDao ex) {
+        }
         
+ 
         
     }//GEN-LAST:event_jButtonApagarActionPerformed
 
+    void limpartTelaAtor(){
+        jTextFieldNome.setText("");
+        jComboBoxNacionalidade.setSelectedIndex(0);
+    
+    }
     /**
      * @param args the command line arguments
      */

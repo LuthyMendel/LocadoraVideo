@@ -144,5 +144,39 @@ public class AtorDao {
         }
 
     }
+    
+    public void excluirAtor(Ator ator) throws ExceptionDao {
+
+        String sql = "delete from ator where codigo = ?";
+        PreparedStatement pStatement = null;
+        Connection connection = null;
+        try {
+            connection = new ConnectionMVC().getConection();
+            pStatement = connection.prepareStatement(sql);
+            pStatement.setInt(1, ator.getCodAtor());
+            
+            pStatement.execute();
+        } catch (SQLException e) {
+
+            throw new ExceptionDao("Erro ao Excluir Ator" + e);
+        } finally {
+            try {
+                if (pStatement != null) {
+                    pStatement.close();
+                }
+            } catch (SQLException e) {
+
+                throw new ExceptionDao("Erro ao fechar o Statement:" + e);
+            }
+            try {
+
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new ExceptionDao("Erro ao fechar conexão :" + e);
+            }
+        }
+    }
 
 }
