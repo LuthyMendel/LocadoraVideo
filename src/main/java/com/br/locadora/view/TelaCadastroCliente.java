@@ -6,8 +6,11 @@
 package com.br.locadora.view;
 
 import com.br.locadora.controller.ClienteController;
+import com.br.locadora.exception.ExceptionDao;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class TelaCadastroCliente extends javax.swing.JFrame {
@@ -38,6 +41,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jButtonSalvar1 = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vídeo Locadora");
@@ -119,34 +123,45 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jButtonCancelar.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonCancelar.setText("Cancelar");
 
+        jButtonExcluir.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCadastroClienteLayout = new javax.swing.GroupLayout(jPanelCadastroCliente);
         jPanelCadastroCliente.setLayout(jPanelCadastroClienteLayout);
         jPanelCadastroClienteLayout.setHorizontalGroup(
             jPanelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCadastroClienteLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelNome1)
-                    .addComponent(jLabelCpf)
-                    .addComponent(jLabelEmail)
-                    .addComponent(jLabelEndereco))
-                .addGap(30, 30, 30)
-                .addGroup(jPanelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextFieldDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(106, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCadastroClienteLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonLimpar)
-                .addGap(22, 22, 22)
-                .addComponent(jButtonCancelar)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonConsultar)
-                .addGap(216, 216, 216))
+                .addGroup(jPanelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelCadastroClienteLayout.createSequentialGroup()
+                        .addComponent(jButtonLimpar)
+                        .addGap(22, 22, 22)
+                        .addComponent(jButtonCancelar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonConsultar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonExcluir)
+                        .addGap(19, 19, 19))
+                    .addGroup(jPanelCadastroClienteLayout.createSequentialGroup()
+                        .addGroup(jPanelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelNome1)
+                            .addComponent(jLabelCpf)
+                            .addComponent(jLabelEmail)
+                            .addComponent(jLabelEndereco))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFormattedTextFieldDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(124, Short.MAX_VALUE))
             .addGroup(jPanelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelCadastroClienteLayout.createSequentialGroup()
                     .addGap(111, 111, 111)
@@ -180,7 +195,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                 .addGroup(jPanelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonConsultar)
                     .addComponent(jButtonLimpar)
-                    .addComponent(jButtonCancelar))
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonExcluir))
                 .addGap(28, 28, 28))
             .addGroup(jPanelCadastroClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCadastroClienteLayout.createSequentialGroup()
@@ -257,6 +273,25 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             telaConsultaCliente.setVisible(true);
             
     }//GEN-LAST:event_abrirtelaConsultarCliente
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        boolean sucesso;
+        
+        ClienteController clienteController = new ClienteController();
+        try {
+           sucesso =  clienteController.excluirCliente(this.codCliente);
+           
+           if(sucesso){
+               JOptionPane.showMessageDialog(null, "Cliente Excluído com Sucesso");
+               this.limparTela();
+           
+           }else{
+               JOptionPane.showMessageDialog(null, "Selecione um Cliente");
+           }
+        } catch (ExceptionDao ex) {
+            
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
    
     
     public void buscarCliente(Integer codClliente, String nome, String cpf, String email, String endereco, Date dtnascimento) {
@@ -274,6 +309,19 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         
         
         
+    }
+    
+    private void limparTela(){
+        jTextFieldNome.setText("");
+        jFormattedTextFieldDataNascimento.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jTextFieldEmail.setText("");
+        jTextFieldEndereco.setText("");
+    }
+    
+    private void limparTelaCadastroCliente(java.awt.event.MouseEvent evt){
+    this.limparTela();
+    
     }
     /**
      * @param args the command line arguments
@@ -313,6 +361,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConsultar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonSalvar1;
     private javax.swing.JFormattedTextField jFormattedTextFieldCpf;

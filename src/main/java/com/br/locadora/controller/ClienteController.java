@@ -87,6 +87,21 @@ public class ClienteController {
        
    return false;
    }
+   
+   public boolean excluirCliente (int codCliente) throws ExceptionDao{
+       
+     if(codCliente == 0){
+        return false;
+     }else{
+         Cliente cliente = new Cliente();
+         cliente.setCodCliente(codCliente);
+         cliente.excluirCliente(cliente);
+         
+           return true;
+     }
+       
+
+   }
     
    
 }

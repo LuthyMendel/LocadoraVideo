@@ -152,4 +152,39 @@ public class ClienteDao {
 
     }
     
+    
+     //Excluir Cliente
+    public void ExcluirCliente(Cliente cliente) throws ExceptionDao{
+
+         String sql = "delete from cliente where codigo = ?";
+         PreparedStatement pStatement = null;
+         Connection connection = null;
+    
+        try {
+            connection = new ConnectionMVC().getConection();
+                pStatement = connection.prepareStatement(sql); 
+                pStatement.setInt(1, cliente.getCodCliente());
+                pStatement.execute();
+        } catch (SQLException e) {
+
+            throw new ExceptionDao("Erro ao Excluir  cliente"+e);
+        }finally{
+            try {
+                if(pStatement !=null){
+                pStatement.close();
+                } 
+            }catch(SQLException e){
+                        throw new ExceptionDao("Erro ao fechar o Statement: "+e);
+                        }try {
+
+                            if(connection != null){
+                                connection.close();
+                            }                
+                } catch (SQLException e) {
+                    throw new ExceptionDao("Erro ao fechar a conexão :"+e);
+                }
+           } 
+
+    }
+    
 }
